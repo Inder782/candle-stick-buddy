@@ -256,16 +256,6 @@ Candlestick Buddy is an educational tool designed to help you learn pattern reco
 - Hosted on [Vercel](https://vercel.com/)
 - Inspired by real traders and market analysts
 
-## 📈 Roadmap
-
-- [ ] Mobile app (React Native)
-- [ ] Community features (leaderboards, discussions)
-- [ ] Pattern accuracy tracker
-- [ ] Live market data integration
-- [ ] Custom pattern builder
-- [ ] Export trading journal
-- [ ] API for third-party integrations
-- [ ] Multi-language support
 
 ## ❓ FAQ
 
@@ -286,6 +276,6 @@ A: Each pattern has different accuracy rates (see Pattern Accuracy Rates section
 
 ---
 
-**Made with ❤️ by [Inder](https://yourwebsite.com)**
+**Made with ❤️ by Inder **
 
 ⭐ If you find this project helpful, please consider giving it a star! It helps others discover the project.
