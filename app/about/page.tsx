@@ -4,22 +4,11 @@ import Link from "next/link";
 
 export default function About() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 to-slate-800 flex flex-col">
-      {/* Navbar */}
-      <nav className="bg-slate-900 border-b border-slate-700">
-        <div className="max-w-7xl mx-auto px-4 py-4">
-          <Link href="/">
-            <h1 className="text-2xl font-bold text-white cursor-pointer hover:text-gray-300 transition">
-              📊 Candlestick Buddy
-            </h1>
-          </Link>
-        </div>
-      </nav>
-
+    <div className="min-h-screen bg-linear-to-br from-slate-900 to-slate-800 flex flex-col">
       {/* Main Content */}
       <div className="flex-1">
         {/* Hero Section */}
-        <div className="bg-gradient-to-r from-blue-900 to-purple-900 border-b border-slate-700 py-12">
+        <div className="bg-linear-to-r from-blue-900 to-purple-900 border-b border-slate-700 py-12">
           <div className="max-w-4xl mx-auto px-4 text-center">
             <h1 className="text-4xl font-bold text-white mb-4">
               About Candlestick Buddy
@@ -89,7 +78,7 @@ export default function About() {
               🎓 Three-Level Learning Path
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              <div className="bg-gradient-to-br from-green-900 to-green-800 rounded-lg p-6 border-l-4 border-green-400">
+              <div className="bg-linear-to-br from-green-900 to-green-800 rounded-lg p-6 border-l-4 border-green-400">
                 <h3 className="text-2xl font-bold text-green-300 mb-3">
                   🟢 Basic
                 </h3>
@@ -102,7 +91,7 @@ export default function About() {
                 </p>
               </div>
 
-              <div className="bg-gradient-to-br from-purple-900 to-purple-800 rounded-lg p-6 border-l-4 border-purple-400">
+              <div className="bg-linear-to-br from-purple-900 to-purple-800 rounded-lg p-6 border-l-4 border-purple-400">
                 <h3 className="text-2xl font-bold text-purple-300 mb-3">
                   🟣 Intermediate
                 </h3>
@@ -115,7 +104,7 @@ export default function About() {
                 </p>
               </div>
 
-              <div className="bg-gradient-to-br from-red-900 to-red-800 rounded-lg p-6 border-l-4 border-red-400">
+              <div className="bg-linear-to-br from-red-900 to-red-800 rounded-lg p-6 border-l-4 border-red-400">
                 <h3 className="text-2xl font-bold text-red-300 mb-3">
                   🔴 Advanced
                 </h3>
@@ -340,7 +329,7 @@ export default function About() {
             <h2 className="text-3xl font-bold text-white mb-6">
               🚀 Open Source
             </h2>
-            <div className="bg-gradient-to-r from-blue-900 to-purple-900 rounded-lg p-8 border border-blue-700 text-center">
+            <div className="bg-linear-to-r from-blue-900 to-purple-900 rounded-lg p-8 border border-blue-700 text-center">
               <p className="text-gray-200 text-lg mb-6">
                 Candlestick Buddy is completely open source! Check out the code,
                 contribute, or fork it for your own project.
@@ -500,79 +489,6 @@ export default function About() {
           </section>
         </div>
       </div>
-
-      {/* Footer */}
-      <footer className="bg-slate-900 border-t border-slate-700 mt-12">
-        <div className="max-w-7xl mx-auto px-4 py-8">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
-            <div className="text-center md:text-left">
-              <p className="text-gray-300 flex items-center justify-center md:justify-start gap-2">
-                Developed with <span className="text-red-500 text-lg">❤️</span>{" "}
-                by <span className="font-semibold text-white">Inder</span>
-              </p>
-              <p className="text-gray-500 text-sm mt-2">
-                Making trading education interactive and fun
-              </p>
-            </div>
-
-            <div className="flex justify-center gap-6">
-              <a
-                href="https://www.youtube.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-gray-400 hover:text-red-500 transition text-2xl"
-                title="YouTube"
-              >
-                📺
-              </a>
-              <a
-                href="https://twitter.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-gray-400 hover:text-blue-400 transition text-2xl"
-                title="Twitter"
-              >
-                𝕏
-              </a>
-              <a
-                href="https://linkedin.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-gray-400 hover:text-blue-600 transition text-2xl"
-                title="LinkedIn"
-              >
-                💼
-              </a>
-              <a
-                href="https://github.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-gray-400 hover:text-white transition text-2xl"
-                title="GitHub"
-              >
-                🔗
-              </a>
-            </div>
-
-            <div className="text-center md:text-right">
-              <Link href="/">
-                <button className="text-gray-400 hover:text-white transition font-semibold">
-                  Back to Home
-                </button>
-              </Link>
-            </div>
-          </div>
-
-          <div className="border-t border-slate-700"></div>
-
-          <div className="pt-6 text-center text-gray-500 text-sm">
-            <p>
-              &copy; 2025 Candlestick Buddy. Open Source | MIT License | 100%
-              Free
-            </p>
-          </div>
-        </div>
-      </footer>
     </div>
   );
 }

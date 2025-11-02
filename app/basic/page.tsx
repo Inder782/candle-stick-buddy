@@ -2,6 +2,7 @@
 
 import { useState, useRef, useEffect } from "react";
 import Link from "next/link";
+import { Basicquestions } from "@/data/BasicQuestions";
 
 export default function BasicMode() {
   const [currentQuestion, setCurrentQuestion] = useState(0);
@@ -17,85 +18,7 @@ export default function BasicMode() {
   const [attemptCount, setAttemptCount] = useState(0);
   const [maxAttempts] = useState(2); // Allow 2 attempts per question
 
-  const questions = [
-    {
-      id: 1,
-      pattern: "Strong Bullish Candle",
-      description: "Price went UP",
-      candle: { open: 105, high: 150, low: 100, close: 145 },
-      correctOpen: "bottom",
-      correctClose: "top",
-      isBullish: true,
-      dialogue: {
-        intro:
-          "Ah, a strong bullish candle! Buyers are in control. Find the opening price...",
-        step1:
-          "Good start! Now, where did the market close? Find the closing price.",
-        correct:
-          "Excellent! You see it now? Open at the bottom, close at the top. That's buying pressure!",
-        incorrect:
-          "Not quite. Remember, in a bullish candle, price rises from open to close.",
-      },
-    },
-    {
-      id: 2,
-      pattern: "Strong Bearish Candle",
-      description: "Price went DOWN",
-      candle: { open: 145, high: 150, low: 100, close: 105 },
-      correctOpen: "top",
-      correctClose: "bottom",
-      isBullish: false,
-      dialogue: {
-        intro:
-          "Observe... a bearish candle. Sellers dominate. Where did the market open?",
-        step1:
-          "Good observation! Now find where it closed. The sellers won this battle.",
-        correct:
-          "Perfect! Open at top, close at bottom. Selling pressure throughout!",
-        incorrect:
-          "Hmm, think again. In bearish candles, price falls from open to close.",
-      },
-    },
-    {
-      id: 3,
-      pattern: "Hammer (Bullish)",
-      description: "Small body at top, long lower wick",
-      candle: { open: 130, high: 140, low: 100, close: 135 },
-      correctOpen: "bottom",
-      correctClose: "top",
-      isBullish: true,
-      dialogue: {
-        intro:
-          "Ah, the Hammer! Sellers tried to push down, but buyers fought back. Where did it open?",
-        step1: "Wise choice. Now, where did our defenders close the market?",
-        correct:
-          "Magnificent! The Hammer shows rejection of lower prices. Buyers winning!",
-        incorrect:
-          "Reconsider, young trader. Look at the small body and the long lower wick.",
-      },
-    },
-    {
-      id: 4,
-      pattern: "Hanging Man (Bearish)",
-      description: "Small body at top, long lower wick",
-      candle: { open: 130, high: 140, low: 100, close: 125 },
-      correctOpen: "top",
-      correctClose: "bottom",
-      isBullish: false,
-      dialogue: {
-        intro:
-          "The Hanging Man appears... a warning sign. Find where this candle opened.",
-        step1:
-          "Good eye! Now locate the close. Even with resistance, sellers prevail.",
-        correct:
-          "You're learning well! The Hanging Man suggests weakness ahead.",
-        incorrect:
-          "Not yet. Study the pattern carefully. The body tells the story.",
-      },
-    },
-  ];
-
-  const question = questions[currentQuestion];
+  const question = Basicquestions[currentQuestion];
 
   const handleSelectAnswer = (field: string, position: string) => {
     if (!showFeedback) {
@@ -141,7 +64,7 @@ export default function BasicMode() {
   };
 
   const handleNext = () => {
-    if (currentQuestion < questions.length - 1) {
+    if (currentQuestion < Basicquestions.length - 1) {
       setCurrentQuestion(currentQuestion + 1);
       setSelectedAnswers({ open: null, close: null });
       setShowFeedback(false);
@@ -153,7 +76,7 @@ export default function BasicMode() {
   };
 
   const quizComplete =
-    currentQuestion === questions.length - 1 &&
+    currentQuestion === Basicquestions.length - 1 &&
     showFeedback &&
     (isCorrect || attemptCount >= maxAttempts);
   const canRetry = !isCorrect && attemptCount < maxAttempts;
@@ -174,7 +97,7 @@ export default function BasicMode() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 to-slate-800 p-6">
+    <div className="min-h-screen bg-linear-to-br from-slate-900 to-slate-800 p-6">
       <div className="max-w-6xl mx-auto">
         {/* Header */}
         <div className="flex justify-between items-center mb-8">
@@ -190,7 +113,7 @@ export default function BasicMode() {
         <div className="bg-slate-700 rounded-lg p-4 mb-6">
           <div className="flex justify-between mb-2">
             <span className="text-gray-300">
-              Question {currentQuestion + 1} of {questions.length}
+              Question {currentQuestion + 1} of {Basicquestions.length}
             </span>
             <span className="text-green-400 font-bold">Score: {score}</span>
           </div>
@@ -198,7 +121,9 @@ export default function BasicMode() {
             <div
               className="bg-green-500 h-2 rounded-full transition-all"
               style={{
-                width: `${((currentQuestion + 1) / questions.length) * 100}%`,
+                width: `${
+                  ((currentQuestion + 1) / Basicquestions.length) * 100
+                }%`,
               }}
             ></div>
           </div>
@@ -301,7 +226,7 @@ export default function BasicMode() {
                     onClick={handleNext}
                     className="w-full mt-8 py-3 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-lg transition"
                   >
-                    {currentQuestion === questions.length - 1
+                    {currentQuestion === Basicquestions.length - 1
                       ? "See Results"
                       : "Next Question"}
                   </button>
@@ -326,7 +251,7 @@ export default function BasicMode() {
                       onClick={handleNext}
                       className="w-full py-3 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-lg transition"
                     >
-                      {currentQuestion === questions.length - 1
+                      {currentQuestion === Basicquestions.length - 1
                         ? "See Results"
                         : "Next Question"}
                     </button>
@@ -342,12 +267,12 @@ export default function BasicMode() {
               Quiz Complete!
             </h2>
             <div className="text-6xl font-bold text-green-400 mb-4">
-              {score} / {questions.length}
+              {score} / {Basicquestions.length}
             </div>
             <p className="text-gray-300 mb-8">
-              {score === questions.length
+              {score === Basicquestions.length
                 ? "🎉 Excellent! You're becoming a true market reader!"
-                : score > questions.length / 2
+                : score > Basicquestions.length / 2
                 ? "👏 Great progress! Keep learning, young trader!"
                 : "💪 The market teaches those who listen. Try again!"}
             </p>
@@ -392,7 +317,7 @@ function WiseMrMarket({
   maxAttempts: number;
 }) {
   return (
-    <div className="bg-gradient-to-br from-emerald-900 to-blue-900 rounded-lg p-4 flex flex-col items-center border-2 border-emerald-700 h-fit">
+    <div className="bg-linear-to-br from-emerald-900 to-blue-900 rounded-lg p-4 flex flex-col items-center border-2 border-emerald-700 h-fit">
       {/* Character Avatar - Smaller */}
       <div className="mb-4">
         <svg

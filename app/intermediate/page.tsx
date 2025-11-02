@@ -2,6 +2,7 @@
 
 import { useState, useRef, useEffect } from "react";
 import Link from "next/link";
+import { Interquestions } from "@/data/InterQuestions";
 
 export default function IntermediateMode() {
   const [currentQuestion, setCurrentQuestion] = useState(0);
@@ -13,237 +14,7 @@ export default function IntermediateMode() {
   const [attemptCount, setAttemptCount] = useState(0);
   const [maxAttempts] = useState(2);
 
-  //TODO : work on questions
-  const questions = [
-    {
-      id: 1,
-      candle: { open: 120, high: 140, low: 100, close: 135 },
-      description: "Small body at top, long lower wick",
-      options: [
-        { label: "Hammer (Bullish)", value: "hammer-bullish", correct: true },
-        {
-          label: "Hanging Man (Bearish)",
-          value: "hangman-bearish",
-          correct: false,
-        },
-        { label: "Doji (Neutral)", value: "doji-neutral", correct: false },
-        {
-          label: "Dragonfly (Bullish)",
-          value: "dragonfly-bullish",
-          correct: false,
-        },
-      ],
-      dialogue: {
-        intro: "What pattern is this? Look closely at the wick and body.",
-        correct:
-          "Perfect! The Hammer shows rejection of lower prices. Strong bullish reversal!",
-        incorrect:
-          "Not quite. Notice the long lower wick and small body at top. That's a Hammer!",
-      },
-    },
-    {
-      id: 2,
-      candle: { open: 130, high: 140, low: 100, close: 125 },
-      description: "Small body at top, long lower wick",
-      options: [
-        { label: "Hammer (Bullish)", value: "hammer-bullish", correct: false },
-        {
-          label: "Hanging Man (Bearish)",
-          value: "hangman-bearish",
-          correct: true,
-        },
-        { label: "Doji (Neutral)", value: "doji-neutral", correct: false },
-        {
-          label: "Shooting Star (Bearish)",
-          value: "shootingstar-bearish",
-          correct: false,
-        },
-      ],
-      dialogue: {
-        intro: "Identify this pattern. What does the formation tell us?",
-        correct:
-          "Excellent! The Hanging Man appears at tops - a bearish warning sign!",
-        incorrect:
-          "Think again. Similar shape to Hammer, but appears at different market levels.",
-      },
-    },
-    {
-      id: 3,
-      candle: { open: 105, high: 145, low: 100, close: 140 },
-      description: "Long upper wick, small body at bottom",
-      options: [
-        {
-          label: "Shooting Star (Bearish)",
-          value: "shootingstar-bearish",
-          correct: false,
-        },
-        {
-          label: "Dragonfly Doji (Bullish)",
-          value: "dragonfly-bullish",
-          correct: true,
-        },
-        {
-          label: "Marubozu (Bullish)",
-          value: "marubozu-bullish",
-          correct: false,
-        },
-        {
-          label: "Spinning Top (Neutral)",
-          value: "spinningtop-neutral",
-          correct: false,
-        },
-      ],
-      dialogue: {
-        intro: "What pattern emerges here? Notice the wick direction.",
-        correct:
-          "Great! Dragonfly Doji - buyers reject lower prices. Bullish reversal!",
-        incorrect: "Look at where the body sits and which wick is longer.",
-      },
-    },
-    {
-      id: 4,
-      candle: { open: 140, high: 145, low: 100, close: 105 },
-      description: "Long upper wick, small body at bottom",
-      options: [
-        {
-          label: "Shooting Star (Bearish)",
-          value: "shootingstar-bearish",
-          correct: true,
-        },
-        {
-          label: "Dragonfly Doji (Bullish)",
-          value: "dragonfly-bullish",
-          correct: false,
-        },
-        {
-          label: "Marubozu (Bearish)",
-          value: "marubozu-bearish",
-          correct: false,
-        },
-        {
-          label: "Spinning Top (Neutral)",
-          value: "spinningtop-neutral",
-          correct: false,
-        },
-      ],
-      dialogue: {
-        intro: "This pattern appears at tops. What is it?",
-        correct:
-          "Perfect! Shooting Star - strong rejection at resistance. Bearish signal!",
-        incorrect:
-          "Look at the price action. This pattern warns of weakness ahead.",
-      },
-    },
-    {
-      id: 5,
-      candle: { open: 105, high: 160, low: 100, close: 155 },
-      description: "No wicks, solid body from open to high and close to high",
-      options: [
-        {
-          label: "Marubozu (Bullish)",
-          value: "marubozu-bullish",
-          correct: true,
-        },
-        { label: "Hammer (Bullish)", value: "hammer-bullish", correct: false },
-        { label: "Doji (Neutral)", value: "doji-neutral", correct: false },
-        {
-          label: "Spinning Top (Neutral)",
-          value: "spinningtop-neutral",
-          correct: false,
-        },
-      ],
-      dialogue: {
-        intro: "Strong price movement with no wicks. What's this called?",
-        correct:
-          "Excellent! Marubozu - no wicks means strong conviction. Bullish strength!",
-        incorrect:
-          "Notice there are no wicks at all. That's the key characteristic!",
-      },
-    },
-    {
-      id: 6,
-      candle: { open: 120, high: 125, low: 115, close: 120 },
-      description: "Equal wicks above and below, small body in middle",
-      options: [
-        { label: "Doji (Neutral)", value: "doji-neutral", correct: true },
-        {
-          label: "Spinning Top (Neutral)",
-          value: "spinningtop-neutral",
-          correct: false,
-        },
-        { label: "Hammer (Bullish)", value: "hammer-bullish", correct: false },
-        {
-          label: "Marubozu (Bullish)",
-          value: "marubozu-bullish",
-          correct: false,
-        },
-      ],
-      dialogue: {
-        intro: "Open equals close. What indecision pattern is this?",
-        correct: "Perfect! Doji shows indecision. Open and close are equal!",
-        incorrect: "Look at where open and close prices are. They're key here.",
-      },
-    },
-    {
-      id: 7,
-      candle: { open: 115, high: 135, low: 105, close: 110 },
-      description: "Roughly equal upper and lower wicks, medium body",
-      options: [
-        {
-          label: "Spinning Top (Neutral)",
-          value: "spinningtop-neutral",
-          correct: true,
-        },
-        { label: "Doji (Neutral)", value: "doji-neutral", correct: false },
-        { label: "Hammer (Bullish)", value: "hammer-bullish", correct: false },
-        {
-          label: "Dragonfly Doji (Bullish)",
-          value: "dragonfly-bullish",
-          correct: false,
-        },
-      ],
-      dialogue: {
-        intro: "Wicks on both sides with uncertain movement. What is it?",
-        correct:
-          "Great! Spinning Top - indecision with larger body. Market uncertainty!",
-        incorrect:
-          "Notice the balanced wicks and the body size. That's the difference!",
-      },
-    },
-    {
-      id: 8,
-      candle: { open: 140, high: 145, low: 100, close: 105 },
-      description: "Small body at bottom, extremely long upper wick",
-      options: [
-        {
-          label: "Shooting Star (Bearish)",
-          value: "shootingstar-bearish",
-          correct: true,
-        },
-        { label: "Hammer (Bullish)", value: "hammer-bullish", correct: false },
-        {
-          label: "Gravestone Doji (Bearish)",
-          value: "gravestone-bearish",
-          correct: false,
-        },
-        {
-          label: "Dragonfly Doji (Bullish)",
-          value: "dragonfly-bullish",
-          correct: false,
-        },
-      ],
-      dialogue: {
-        intro:
-          "Long upper wick at resistance, body at bottom. What's the warning?",
-        correct:
-          "Excellent! Shooting Star at tops signals strong bearish rejection!",
-        incorrect:
-          "Position and wick direction matter. This pattern appears at tops.",
-      },
-    },
-  ];
-
-  const question = questions[currentQuestion];
+  const question = Interquestions[currentQuestion];
 
   const handleSelectAnswer = (value: string) => {
     if (!showFeedback) {
@@ -275,7 +46,7 @@ export default function IntermediateMode() {
   };
 
   const handleNext = () => {
-    if (currentQuestion < questions.length - 1) {
+    if (currentQuestion < Interquestions.length - 1) {
       setCurrentQuestion(currentQuestion + 1);
       setSelectedAnswer(null);
       setShowFeedback(false);
@@ -285,7 +56,7 @@ export default function IntermediateMode() {
   };
 
   const quizComplete =
-    currentQuestion === questions.length - 1 &&
+    currentQuestion === Interquestions.length - 1 &&
     showFeedback &&
     (isCorrect || attemptCount >= maxAttempts);
   const canRetry = !isCorrect && attemptCount < maxAttempts;
@@ -303,14 +74,14 @@ export default function IntermediateMode() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 to-slate-800 p-4">
+    <div className="min-h-screen bg-linear-to-br from-slate-900 to-slate-800 p-4">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="flex justify-between items-center mb-6">
           <h1 className="text-3xl font-bold text-white">Intermediate Mode</h1>
           <div className="flex items-center gap-4">
             <span className="text-green-400 font-bold text-base">
-              Score: {score}/{questions.length}
+              Score: {score}/{Interquestions.length}
             </span>
             <Link href="/">
               <button className="px-4 py-2 bg-gray-700 hover:bg-gray-600 text-white text-sm rounded-lg transition">
@@ -326,12 +97,14 @@ export default function IntermediateMode() {
             <div
               className="bg-purple-500 h-2 rounded-full transition-all"
               style={{
-                width: `${((currentQuestion + 1) / questions.length) * 100}%`,
+                width: `${
+                  ((currentQuestion + 1) / Interquestions.length) * 100
+                }%`,
               }}
             ></div>
           </div>
           <p className="text-gray-400 text-sm mt-2">
-            Question {currentQuestion + 1} of {questions.length}
+            Question {currentQuestion + 1} of {Interquestions.length}
           </p>
         </div>
 
@@ -435,7 +208,7 @@ export default function IntermediateMode() {
                     onClick={handleNext}
                     className="w-full py-3 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-lg transition text-base"
                   >
-                    {currentQuestion === questions.length - 1
+                    {currentQuestion === Interquestions.length - 1
                       ? "See Results"
                       : "Next Question"}
                   </button>
@@ -459,7 +232,7 @@ export default function IntermediateMode() {
                     onClick={handleNext}
                     className="w-full py-3 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-lg transition text-base"
                   >
-                    {currentQuestion === questions.length - 1
+                    {currentQuestion === Interquestions.length - 1
                       ? "See Results"
                       : "Next Question"}
                   </button>
@@ -474,14 +247,14 @@ export default function IntermediateMode() {
               Intermediate Complete!
             </h2>
             <div className="text-6xl font-bold text-purple-400 mb-4">
-              {score} / {questions.length}
+              {score} / {Interquestions.length}
             </div>
             <p className="text-gray-300 mb-8 text-base leading-relaxed">
-              {score === questions.length
+              {score === Interquestions.length
                 ? "🎉 Outstanding! You mastered candlestick patterns!"
-                : score > questions.length * 0.7
+                : score > Interquestions.length * 0.7
                 ? "👏 Excellent progress! You're a pattern expert!"
-                : score > questions.length * 0.5
+                : score > Interquestions.length * 0.5
                 ? "💪 Good effort! Keep practicing patterns!"
                 : "📚 Keep learning! More practice needed!"}
             </p>
@@ -522,7 +295,7 @@ function WiseMrMarket({
   maxAttempts: number;
 }) {
   return (
-    <div className="bg-gradient-to-br from-purple-900 to-blue-900 rounded-lg p-4 flex flex-col items-center border-2 border-purple-700 h-fit sticky top-4">
+    <div className="bg-linear-to-br from-purple-900 to-blue-900 rounded-lg p-4 flex flex-col items-center border-2 border-purple-700 h-fit sticky top-4">
       {/* Avatar - Larger */}
       <div className="mb-3">
         <svg
