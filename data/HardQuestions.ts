@@ -243,17 +243,17 @@ export const Hardquestions = [
     id: 7,
     type: "multi-candle",
     candles: [
-      { open: 140, high: 145, low: 100, close: 105 }, // Bearish 1
-      { open: 105, high: 110, low: 100, close: 103 }, // Bearish 2
-      { open: 103, high: 105, low: 98, close: 102 }, // Bearish 3
+      { open: 150, high: 151, low: 120, close: 125 }, // Bearish 1
+      { open: 125, high: 129, low: 109, close: 112 }, // Bearish 2
+      { open: 112, high: 114, low: 98, close: 102 }, // Bearish 3
       { open: 102, high: 150, low: 100, close: 145 }, // LARGE BULLISH
     ],
     description:
       "Three bearish candles followed by one extremely large bullish candle closing above the first open",
     options: [
       {
-        label: "Bullish Three Line Strike (Bullish)",
-        value: "bullish-three-line-strike-bullish",
+        label: "Bearish Three Line Strike (Bearish)",
+        value: "bearish-three-line-strike-bearish",
         correct: true,
       },
       {
@@ -325,7 +325,8 @@ export const Hardquestions = [
     type: "two-candle",
     candles: [
       { open: 140, high: 145, low: 100, close: 105 }, // Small bearish
-      { open: 105, high: 110, low: 100, close: 108 }, // Small bullish
+      { open: 105, high: 110, low: 100, close: 108 },
+      { open: 105, high: 145, low: 100, close: 140 }, // Small bullish
     ],
     description: "Gap down then gap up with small candles",
     options: [

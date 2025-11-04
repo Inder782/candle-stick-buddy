@@ -27,7 +27,7 @@ export const Interquestions = [
   },
   {
     id: 2,
-    candle: { open: 130, high: 140, low: 100, close: 125 },
+    candle: { open: 140, high: 140, low: 100, close: 125 },
     description: "Small body at top, long lower wick",
     options: [
       { label: "Hammer (Bullish)", value: "hammer-bullish", correct: false },
@@ -53,8 +53,9 @@ export const Interquestions = [
   },
   {
     id: 3,
-    candle: { open: 105, high: 145, low: 100, close: 140 },
-    description: "Long upper wick, small body at bottom",
+    candle: { open: 135, high: 140, low: 100, close: 140 },
+    description:
+      "T-shaped candlestick with a very small or non-existent top and a long lower shadow",
     options: [
       {
         label: "Shooting Star (Bearish)",
@@ -86,7 +87,7 @@ export const Interquestions = [
   },
   {
     id: 4,
-    candle: { open: 140, high: 145, low: 100, close: 105 },
+    candle: { open: 120, high: 145, low: 100, close: 100 },
     description: "Long upper wick, small body at bottom",
     options: [
       {
@@ -170,7 +171,7 @@ export const Interquestions = [
   },
   {
     id: 7,
-    candle: { open: 115, high: 135, low: 105, close: 110 },
+    candle: { open: 117, high: 135, low: 105, close: 120 },
     description: "Roughly equal upper and lower wicks, medium body",
     options: [
       {
@@ -196,7 +197,7 @@ export const Interquestions = [
   },
   {
     id: 8,
-    candle: { open: 140, high: 145, low: 100, close: 105 },
+    candle: { open: 115, high: 145, low: 100, close: 105 },
     description: "Small body at bottom, extremely long upper wick",
     options: [
       {
